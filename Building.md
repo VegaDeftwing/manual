@@ -34,25 +34,26 @@ On Ubuntu 16.04:
 sudo apt install git curl cmake libx11-dev libglu1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev zlib1g-dev libasound2-dev libgtk2.0-dev libjack-jackd2-dev jq
 ```
 
-On Arch Linux:
+On Arch Linux, assuming a graphical enviroment is already installed:
 ```
-pacman -S git wget gcc make cmake tar unzip zip curl jq
+pacman -S base-devel git wget cmake tar unzip zip curl jq --needed
 ```
+Furthermore, if you wish to use Jack Audio the `Jack2` package is recomended, for whichmore information can be found on the [Arch Wiki](https://wiki.archlinux.org/index.php/JACK_Audio_Connection_Kit)
 
 ## Building Rack
 
 *If the build fails for you, please report the issue with a detailed error message to help the portability of Rack.*
 
-Clone this repository with `git clone https://github.com/VCVRack/Rack.git` and `cd Rack`.
-Make sure there are no spaces in your absolute path, since this breaks the Makefile-based build system.
+Clone this repository with `git clone https://github.com/VCVRack/Rack.git` and `cd Rack`. Make sure there are no spaces in your absolute path, since this breaks the Makefile-based build system.
 
 Clone submodules.
 
 	git submodule update --init --recursive
 
 Build dependencies locally.
-You may add `-j4` (or your number of logical cores) to your `make` commands to parallelize builds.
-This may take 15-60 minutes.
+You may add `-j$(nproc)` to your `make` commands to parallelize builds.
+This may take 15-60 minutes. If this build fails adding `-k` to ignore warnings may help, espcially
+if the failure is simply due to newer version of some library or dependency somewhere in the system. 
 
 	make dep
 
@@ -64,6 +65,10 @@ This may take 1-5 minutes.
 Run Rack.
 
 	make run
+	
+### Arch Linux and Other Rolling Release Distributions. 
+
+As many linux distributions are rolling release, the build may fail due to mis matched versions. If this is the case please open an issue as outlined above. 
 
 ## Building Rack plugins
 
