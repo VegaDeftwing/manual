@@ -63,4 +63,19 @@ You should now be able to play Rack via your MIDI controller from the armed brid
 
 To record audio from Rack, right-click on the record arm button for the track that you want to capture Rack's output audio from the bridge, and select "Record: output" --> "Record: (whatever_audio_format_is_desired)". 
 
-*Note:* If REAPER is already open with a VCV bridge instance created, and VCV is opened second with a patch that already contains MIDI and/or audio modules set to anything other than Bridge send/receive, VCV Rack may crash on startup or patch load, even if the VCV Bridge insert is currently bypassed in REAPER. You may need to close REAPER and specifically select Bridge mode in your Rack audio / MIDI setup first before attempting to bridge. 
+*Note:* If REAPER is already open with a VCV bridge instance created, and VCV is opened second with a patch that already contains MIDI and/or audio modules set to anything other than Bridge send/receive, VCV Rack may crash on startup or patch load, even if the VCV Bridge insert is currently bypassed in REAPER. You may need to close REAPER and specifically select Bridge mode in your Rack audio / MIDI setup first before attempting to bridge.
+
+### Renoise
+First, ensure the VST for Rack is installed in the correct directory, as set in Edit->Prefrences->Plug/Misc and then in the same menu click the 'rescan' button.
+
+Assuming the VST was found you should be able to go to the 'Plugin' near the top left of the window and then in the bar on the right side select 'Bridge' from the menu that appears when the plugin selection drop down menu is activated. Note that by default this menu should say 'No Plugin Loaded' and that's what you need to click.
+
+From here you should be able to click the button in the middle of the screen titled 'External Editor' to open a dialog to setup Bridge.
+
+If you would instead prefer to use Rack as an Effects processor Bridge should now show up as an option to be inserted as an effect processor in the same place as any native effect, though it may be quite far down the list.
+
+## Using Jack Audio instead of Bridge
+** Note that while it is possible to use Jack on Windows, the experiance leave much to be desired, as such the following is primarily applicable to Linux.
+
+Though considerably less powerful, it is possible to do simple audio routing in and out of Rack using Jack Audio. Using [skjack](https://github.com/Skrylar/skjack-vcv/blob/master/README.org), which as available in the plugin manager as well, the functionality may be greatly improved though. Furthermore, PulseAudio may be passed though Jack in order to feed the output from most applications which may output audio though Rack.
+
